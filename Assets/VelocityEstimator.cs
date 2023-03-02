@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//-------------------------------------------------------------------------
 public class VelocityEstimator : MonoBehaviour
 {
 	[Tooltip( "How many frames to average over for computing velocity" )]
@@ -17,6 +18,7 @@ public class VelocityEstimator : MonoBehaviour
 	private Vector3[] angularVelocitySamples;
 
 	
+	//-------------------------------------------------
 	public void BeginEstimatingVelocity()
 	{
 		FinishEstimatingVelocity();
@@ -25,6 +27,7 @@ public class VelocityEstimator : MonoBehaviour
 	}
 
 
+	//-------------------------------------------------
 	public void FinishEstimatingVelocity()
 	{
 		if ( routine != null )
@@ -35,6 +38,7 @@ public class VelocityEstimator : MonoBehaviour
 	}
 
 
+	//-------------------------------------------------
 	public Vector3 GetVelocityEstimate()
 	{
 		// Compute average velocity
@@ -53,6 +57,7 @@ public class VelocityEstimator : MonoBehaviour
 	}
 
 
+	//-------------------------------------------------
 	public Vector3 GetAngularVelocityEstimate()
 	{
 		// Compute average angular velocity
@@ -70,6 +75,8 @@ public class VelocityEstimator : MonoBehaviour
 		return angularVelocity;
 	}
 
+
+	//-------------------------------------------------
 	public Vector3 GetAccelerationEstimate()
 	{
 		Vector3 average = Vector3.zero;
@@ -88,6 +95,9 @@ public class VelocityEstimator : MonoBehaviour
 		average *= ( 1.0f / Time.deltaTime );
 		return average;
 	}
+
+
+	//-------------------------------------------------
 	void Awake()
 	{
 		velocitySamples = new Vector3[velocityAverageFrames];
@@ -100,6 +110,7 @@ public class VelocityEstimator : MonoBehaviour
 	}
 
 
+	//-------------------------------------------------
 	private IEnumerator EstimateVelocityCoroutine()
 	{
 		sampleCount = 0;
@@ -141,4 +152,3 @@ public class VelocityEstimator : MonoBehaviour
 		}
 	}
 }
-

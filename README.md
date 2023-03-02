@@ -1,3 +1,0 @@
-# Cosmere
-
-Unity Project
