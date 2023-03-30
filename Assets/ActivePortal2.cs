@@ -1,26 +1,25 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivePortal : MonoBehaviour
+public class ActivePortal2 : MonoBehaviour
 {
-    [SerializeField]public GameObject luthadelActive;
+    [SerializeField]public GameObject nalthisActive;
     void Start()
     {
-        luthadelActive.SetActive(false);
+        nalthisActive.SetActive(false);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("forPortal"))
         {
-            luthadelActive.SetActive(true);
+            nalthisActive.SetActive(true);
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        luthadelActive.SetActive(false);
+        nalthisActive.SetActive(false);
     }
 }
