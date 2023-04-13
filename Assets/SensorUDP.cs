@@ -13,8 +13,8 @@ public class MessageData
 public class SensorUDP : MonoBehaviour
 {
 
-    private GameObject sphere;
-    private Material m_Material;
+    public GameObject Portal;
+    float lastshit;
 
 
     private Thread receiveThread;
@@ -28,11 +28,7 @@ public class SensorUDP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.localScale = new Vector3(5f, 5f, 5f);
-        m_Material = sphere.GetComponent<Renderer>().material;
-
-
+        Transform transform = Portal.GetComponent<Transform>();
 
         receiveClient = new UdpClient(receivePort);
         receiveQueue = Queue.Synchronized(new Queue());
@@ -98,16 +94,16 @@ public class SensorUDP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (receiveQueue.Count != 0)
         {
             string message = (string)receiveQueue.Dequeue();
             MessageData msgData = JsonUtility.FromJson<MessageData>(message);
-            if (msgData.Distance < 1)
+            if (lastshit != msgData.Distance)
             {
-                sphere.SetActive(false);
+                transform.Rotate(0f,180f,0f);
+                lastshit = msgData.Distance;
             }
-            else
-                sphere.SetActive(true);
         }
     }
 }
