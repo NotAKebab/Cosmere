@@ -7,9 +7,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/ActivePortal.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -86,6 +83,10 @@
       <workItem from="1678245149937" duration="4815000" />
       <workItem from="1680198753143" duration="1061000" />
       <workItem from="1681396599020" duration="2511000" />
+      <workItem from="1682513004805" duration="902000" />
+      <workItem from="1682606873038" duration="3131000" />
+      <workItem from="1682622831670" duration="5877000" />
+      <workItem from="1683213695803" duration="2768000" />
     </task>
     <servers />
   </component>
@@ -96,5 +97,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/SensorUDP.cs</url>
+          <line>113</line>
+          <properties documentPath="C:\Users\BL00D\Downloads\Unity Projects\Cosmere\Assets\SensorUDP.cs" initialLine="101" containingFunctionPresentation="method 'Update'">
+            <startOffsets>
+              <option value="2678" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2743" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

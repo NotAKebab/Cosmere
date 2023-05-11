@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Net.Sockets;
 using System.Net;
@@ -8,13 +9,18 @@ using System.Text;
 public class MessageData
 {
     public float Distance;
+    public string Estado;
 }
 
 public class SensorUDP : MonoBehaviour
 {
 
+    private Renderer portalRenderer;
+    public Material onMaterial;
+    public Material offMaterial;
     public GameObject Portal;
-    float lastshit;
+    public float lastshit;
+    public float currentDistance;
 
 
     private Thread receiveThread;
@@ -28,6 +34,9 @@ public class SensorUDP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        portalRenderer = Portal.GetComponent<Renderer>();
+        portalRenderer.material = offMaterial;
         Transform transform = Portal.GetComponent<Transform>();
 
         receiveClient = new UdpClient(receivePort);
@@ -36,6 +45,10 @@ public class SensorUDP : MonoBehaviour
         receiveThread.IsBackground = true;
         receiveThread.Start();
         isInitialized = true;
+
+        currentDistance = 5f;
+        lastshit = 5f;
+
     }
     private void ReceiveDataListener()
     {
@@ -98,11 +111,29 @@ public class SensorUDP : MonoBehaviour
         if (receiveQueue.Count != 0)
         {
             string message = (string)receiveQueue.Dequeue();
-            MessageData msgData = JsonUtility.FromJson<MessageData>(message);
-            if (lastshit != msgData.Distance)
+            //MessageData msgData = JsonUtility.FromJson<MessageData>(message);
+            
+            //Debug.Log(msgData);
+
+
+            string[] strings = message.Split(':');
+            strings = strings[1].Split('}');
+            
+            //Debug.Log(strings[0]);
+            //if(strings[0] == "\"ON\"") Debug.Log("Lo lgramos");
+
+             if (strings[0] == "\"ON\"")
+             {
+                    if (lastshit != currentDistance)
+                    {
+                        transform.Rotate(0f,180f,0f);
+                        portalRenderer.material = onMaterial;
+                        lastshit = currentDistance;
+                    }    
+             }            
+            else
             {
-                transform.Rotate(0f,180f,0f);
-                lastshit = msgData.Distance;
+                currentDistance = System.Convert.ToSingle(strings[0]);
             }
         }
     }
